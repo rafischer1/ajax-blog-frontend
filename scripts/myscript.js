@@ -1,7 +1,7 @@
 let parent = document.getElementById('blog')
 document.addEventListener('DOMContentLoaded', () => {
   console.log('script: ⚽')
-  // M.AutoInit();
+  M.AutoInit();
   getPosts()
   getUsers()
   //end of DOMContentLoaded scope\\
@@ -11,6 +11,15 @@ function getUsers() {
   axios.get('https://secret-savannah-43473.herokuapp.com/users')
     .then((res) => {
       console.log('users data:', res.data)
+      res.data.forEach((users) => {
+        let userDiv = document.getElementById('userDiv')
+        let userH5 = document.createElement('h5')
+        userH5.className = "usersText"
+        userDiv.appendChild(userH5)
+        userH5.innerText = `
+        User: ${users.id}
+        \n${users.first_name} ${users.last_name}\n ${users.location}  `
+      })
     })
 }
 
@@ -36,21 +45,22 @@ function getPosts() {
         let del_button = document.createElement('button')
         let editBtn = document.createElement('a')
 
-        spanCardTitle.innerText = `${posts.title} \n ${posts.content}`
+        spanCardTitle.innerText = posts.title
+        divCardContent.innerText = posts.content
         imgSrc.src = posts.photo
         parent.appendChild(divRow)
         divRow.appendChild(divCol)
         divCol.appendChild(divCard)
         divCard.appendChild(spanCardTitle)
         divCard.appendChild(divCardImage)
-        divCardImage.appendChild(imgSrc)
+        divCardContent.appendChild(imgSrc)
         divCard.appendChild(divCardContent)
         divCardContent.appendChild(del_button)
         del_button.innerText = "X"
         del_button.setAttribute('data-id', posts.id)
         del_button.className = "delBtn"
         divCardContent.appendChild(editBtn)
-        editBtn.setAttribute('movieId', posts.id)
+        editBtn.setAttribute('postID', posts.id)
         editBtn.setAttribute('data-target', 'modal1')
         editBtn.setAttribute('name', 'Edit')
         editBtn.className = "editBtn modal-trigger"
@@ -68,7 +78,7 @@ function getPosts() {
         del_button.addEventListener('click', (ev) => {
           ev.preventDefault()
           if (confirm('Are you sure you want to delete this post?')) {
-            axios.delete(`https://secret-savannah-43473.herokuapp.com/posts${posts.id}`)
+            axios.delete(`https://secret-savannah-43473.herokuapp.com/posts/${posts.id}`)
               .then((res) => {
                 console.log(`deleted`)
                 ev.target.parentElement.parentElement.remove()
@@ -94,48 +104,52 @@ function getPosts() {
 }
 
 function modalFunction(ev) {
-  let id = ev.target.getAttribute('movieid')
+  let id = ev.target.getAttribute('postID')
   let openModal = document.querySelectorAll('.modal')
   let instance = M.Modal.init(openModal)
 
   //axios get call by id to populate modal\\
-  axios.get(`https://fischer-moviedb.herokuapp.com/posts/${id}`)
-    .then((movie) => {
-      console.log('movie', movie)
+  axios.get(`https://secret-savannah-43473.herokuapp.com/posts/${id}`)
+    .then((post) => {
       let formTitle = document.getElementById('formTitle')
       let modalTitle = document.getElementById('modalTitle')
-      let modalYear = document.getElementById('modalYear')
+      let modalContent = document.getElementById('modalContent')
       let modalPhoto = document.getElementById('modalPhoto')
-      formTitle.innerText = movie.data[0].title
-      modalTitle.value = movie.data[0].title
-      modalPhoto.value = movie.data[0].photo
-      modalYear.value = movie.data[0].release_date
-      let modalMovieID = movie.data[0].id
+      formTitle.innerText = post.data[0].title
+      modalTitle.value = post.data[0].title
+      modalContent.value = post.data[0].content
+      modalPhoto.value = post.data[0].photo
+      let modalpostID = post.data[0].id
 
-      let modalSubmit = document.getElementById('modalSubmit')
-      modalSubmit.addEventListener('submit', (ev) => {
+      let modalFormSubmit = document.getElementById('modalFormSubmit')
+
+      console.log('before submit')
+      //modalForm submit event listener
+      modalFormSubmit.addEventListener('submit', (ev) => {
         ev.preventDefault()
-
+        console.log('after submit')
         /////grab all values from the form\\\
+
         let putData = {}
         let formElements = ev.target.elements
+        console.log('put data elements;', ev.target.elements)
         if (formElements[0].value) {
           putData.title = formElements[0].value
         }
         if (formElements[1].value) {
-          putData.release_date = formElements[1].value
+          putData.content = formElements[1].value
         }
         if (formElements[2].value) {
           putData.photo =
             formElements[2].value
         }
-        putData.id = modalMovieID
+        putData.id = modalpostID
 
         ////axios put call to update entry\\\\
-        axios.put(`https://fischer-moviedb.herokuapp.com/posts/${modalMovieID}`, putData)
+        axios.put(`https://secret-savannah-43473.herokuapp.com/posts/${modalpostID}`, putData)
           .then((response) => {
             if (response) {
-              alert(`Update complete! “Nothing I have witnessed, from lava to crustacean, assailed me liked the caked debris haunting that small plastic soap hammock in the smaller of the bathrooms. Nausea is not a sufficient word.”―WH`)
+              alert(`Update complete!`)
               ////window reload - not a great solution but works!\\\\
               location.reload()
             } else {

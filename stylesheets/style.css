@@ -1,7 +1,10 @@
 body {
+  background: url('https://images.unsplash.com/photo-1511204338744-5d4e9b3ffee0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=db26b633c467022f180f3205f9e488cf&auto=format&fit=crop&w=2619&q=80');
   background-color: rgb(43, 93, 38);
   color: white;
   text-align: center;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 24px;
 }
 
 a {
@@ -10,15 +13,73 @@ a {
 }
 
 img {
+  margin: 5px 0px 8px 0px;
   width: 60%;
   height: 60%;
   border-radius: 10px;
   border: 1px ridge rgb(46, 46, 46);
 }
 
+img:hover {
+    opacity: .9;
+    border: 1px ridge rgb(71, 70, 70);
+}
+
+#photoCred {
+  font-size: 18px;
+}
 
 .card {
-  margin-left: 15%;
   border: 2px solid white;
   max-width: 800px;
+  margin: 5px 5px 15px 15%;
+  text-align: center;
+}
+
+.card-title {
+  color: rgb(59, 175, 67);
+  font-size: 28px;
+  font-weight: bold;  
+}
+
+a {
+  cursor: pointer;
+}
+
+#blogForm {
+  text-align: center;
+  margin-left: 7.5%;
+  width: 85%;
+}
+
+.delBtn {
+  margin: 10px 10px;
+  font-size: 18px;
+  border-radius: 10px;
+}
+
+.usersText {
+  border: 1px solid white;
+  width: 25%;
+  margin-left: 35%;
+  background-color: hsla(124, 49%, 45%, 0.53);
+padding: 10px;
+}
+
+.modal {
+  margin-left: 7.5%;
+  border: 2px solid white;
+  width: 100%;
+  height: 400px;
+}
+
+input {
+  color: white;
+  font-size: 18px;
+  cursor: crosshair;
+  background-color: rgba(196, 196, 196, 0.1);
+  height: 30px;
+  width: 75%;
+  border: 0px;
+  border-bottom: 3px solid green;
 }

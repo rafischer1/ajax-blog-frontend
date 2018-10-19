@@ -5,10 +5,19 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible"
       content="IE=edge">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand"
+      rel="stylesheet">
     <!-- axios -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <meta name="viewport"
       content="width=device-width, initial-scale=1">
+    <!-- materialize -->
+
+    <!-- Compiled and minified CSS -->
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- css -->
     <link rel="stylesheet"
       href="./stylesheets/style.css">
@@ -19,15 +28,51 @@
   <body>
     <header>
       <h1>RAF WORLD SOCCER BLOG</h1>
+      <a href="./html/create.html">Create a Post</a>
     </header>
 
     <div class="container"
       id="blog"></div>
+    <!-- modal -->
+    <!-- Modal Structure -->
+    <div id="modal1"
+      class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <form action=""
+          id="modalFormSubmit">
+          <label for="name"
+            id="formTitle"
+            id="">
+          </label>
+          <br>
+          <input type="text"
+            id="modalTitle"><br> Title
+          <br>
+          <input type="text"
+            id="modalContent"><br> Post
+          <br>
+          <input type="text"
+            id="modalPhoto">
+          <br>Photo Link URL
+          <br>
+          <button type="submit"
+            id="modalSubmitBtn">Submit</button>
+      </div>
+      <br>
+      <div class="modal-footer">
+        <a href="#!"
+          class="modal-close waves-effect waves-green btn-flat">Close Edit Form</a>
+      </div>
+      </form>
+    </div>
 
+    <div id="userDiv"></div>
 
     <footer>
       <a href="https://secret-savannah-43473.herokuapp.com/"
         target="_blank">RAF World Soccer Blog Database</a>
+      <br>
+      <p id="photoCred">background photo: Willian Justen de Vasconcellos</p>
     </footer>
 
     <script src="./scripts/myscript.js"
