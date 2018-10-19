@@ -80,6 +80,21 @@ a {
   border-radius: 10px;
 }
 
+#modalSubmitBtn {
+  color: black;
+  padding: 5px;
+  font-size: 20px;
+  margin-left: 50px;
+  margin-top: 10px;
+  border: 1px solid white;
+  background-color: hsla(55, 60%, 52%);
+  border-radius: 10px;
+}
+
+#modalSubmitBtn:active {
+  background-color: rgb(90, 49, 119);
+}
+
 .editBtn:active {
   background-color: hsla(124, 49%, 45%, 0.9);
 }
@@ -97,6 +112,7 @@ a {
 }
 
 .modal {
+  display: none;
   margin-left: 7.5%;
   border: 2px solid white;
   width: 100%;
