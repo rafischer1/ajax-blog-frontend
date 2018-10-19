@@ -55,16 +55,16 @@ function getPosts() {
         divCard.appendChild(divCardImage)
         divCardContent.appendChild(imgSrc)
         divCard.appendChild(divCardContent)
-        divCardContent.appendChild(del_button)
-        del_button.innerText = "X"
+        divCard.appendChild(del_button)
+        del_button.innerText = "Delete Post"
         del_button.setAttribute('data-id', posts.id)
         del_button.className = "delBtn"
-        divCardContent.appendChild(editBtn)
+        divCard.appendChild(editBtn)
         editBtn.setAttribute('postID', posts.id)
         editBtn.setAttribute('data-target', 'modal1')
         editBtn.setAttribute('name', 'Edit')
         editBtn.className = "editBtn modal-trigger"
-        editBtn.innerText = "Edit"
+        editBtn.innerText = "Edit Post"
 
         /////edit this record!!\\\\\
         editBtn.addEventListener('click', (ev) => {

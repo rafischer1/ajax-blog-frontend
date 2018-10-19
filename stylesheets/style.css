@@ -12,8 +12,14 @@ a {
   font-size: 30px;
 }
 
+.card-image {
+  
+  margin-bottom: 10px;
+}
+
 img {
-  margin: 5px 0px 8px 0px;
+  float: none;
+  margin: 10px;
   width: 60%;
   height: 60%;
   border-radius: 10px;
@@ -30,10 +36,12 @@ img:hover {
 }
 
 .card {
+  display: block;
+  background-color: rgba(54, 150, 48, 0.33);
   border: 2px solid white;
   max-width: 800px;
   margin: 5px 5px 15px 15%;
-  text-align: center;
+  text-align: left;
 }
 
 .card-title {
@@ -53,9 +61,31 @@ a {
 }
 
 .delBtn {
+  border: 1px solid white;
+  font-size: 20px;
   margin: 10px 10px;
+  padding: 5px;
   font-size: 18px;
   border-radius: 10px;
+  background-color: hsla(124, 49%, 45%, 0.53);
+}
+
+.editBtn {
+  color: black;
+  padding: 5px;
+  font-size: 20px;
+  margin-left: 50px;
+  border: 1px solid white;
+  background-color: hsla(123, 48%, 45%, 0.58);
+  border-radius: 10px;
+}
+
+.editBtn:active {
+  background-color: hsla(124, 49%, 45%, 0.9);
+}
+
+.delBtn:active {
+  background-color: hsla(124, 49%, 45%, 0.9);
 }
 
 .usersText {
@@ -63,7 +93,7 @@ a {
   width: 25%;
   margin-left: 35%;
   background-color: hsla(124, 49%, 45%, 0.53);
-padding: 10px;
+  padding: 10px;
 }
 
 .modal {
